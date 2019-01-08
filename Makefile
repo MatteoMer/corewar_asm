@@ -6,19 +6,19 @@
 #    By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 14:36:04 by mmervoye          #+#    #+#              #
-#    Updated: 2019/01/07 16:17:53 by mmervoye         ###   ########.fr        #
+#    Updated: 2019/01/08 15:08:38 by mmervoye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = asm
-DEBUG = no
+DEBUG = yes
 
 # Set the compiler used
 CC = gcc
 
 # Set the flags used by the compiler, if DEBUG=yes, use debug flags
 ifeq ($(DEBUG), yes)
-	CFLAGS = -Wall -Wextra -fsanistize=address -g3
+	CFLAGS = -Wall -Wextra -fsanitize=address -g3
 else
 	CFLAGS = -Wall -Wextra -Werror
 endif
@@ -29,7 +29,12 @@ INC_PATH = ./incs/
 SRC_PATH = ./srcs/
 
 # Defining explicites sources and objects
-SRC_NAME = main.c
+SRC_NAME = main.c\
+		   error.c\
+		   file.c\
+		   parse.c\
+		   misc.c\
+		   label.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
@@ -51,7 +56,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ_PATH) $(OBJ)
 	@printf "$(YELLOW)Compiling $(NAME)"
-	@$(CC) -o $(NAME) -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(LIBFT_FLAG) -o $(NAME) $(OBJ)
+	@$(CC) $(CFLAGS) -o $(NAME) -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(LIBFT_FLAG) -o $(NAME) $(OBJ)
 	@printf $(DONE)
 	@printf "$(GREEN)makefile: $(NAME) compiled !\n"
 
@@ -62,7 +67,7 @@ $(OBJ_PATH):
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@printf "$(GREEN)Compiling $@"
-	@$(CC) $(CC_FLAG) -o $@ -c $<
+	@$(CC) $(CC_FLAG) -I $(INC_PATH) -I $(LIBFT_INC_PATH) -o $@ -c $<
 	@printf $(DONE)
 
 clean:

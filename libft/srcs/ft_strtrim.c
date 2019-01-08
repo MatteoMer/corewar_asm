@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 14:07:34 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/08/28 17:08:54 by xmazella         ###   ########.fr       */
+/*   Updated: 2019/01/08 10:36:27 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char			*ft_strtrim(char const *s)
 	len = ft_len((char *)s);
 	str = (char *)malloc(sizeof(*str) * (len + 1));
 	if (!str)
-		return ((char *)malloc_error());
+		return (NULL);
 	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t' || s[i] == 127)
 		i++;
 	while (j < len)

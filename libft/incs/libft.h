@@ -6,7 +6,7 @@
 /*   By: mmervoye <mmervoye@student.42.fd>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 12:45:47 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/08/28 17:21:52 by xmazella         ###   ########.fr       */
+/*   Updated: 2019/01/08 10:36:36 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,5 @@ t_list				*ft_tab_to_list(char **tab);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstnew(const void *content, size_t content_size);
 t_list				*ft_lstreverse(t_list *lst);
-void				*malloc_error(void);
 
 #endif

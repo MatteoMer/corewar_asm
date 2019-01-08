@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:42:19 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/08/28 17:02:55 by xmazella         ###   ########.fr       */
+/*   Updated: 2019/01/08 10:35:31 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ char			*ft_itoa(int n)
 		weight /= 10;
 	}
 	str[cur] = '\0';
-	return (str == NULL ? (char *)malloc_error() : str);
+	return (str);
 }

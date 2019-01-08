@@ -6,7 +6,7 @@
 #    By: xmazella <xmazella@student.42.fd>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:06:35 by mmervoye          #+#    #+#              #
-#    Updated: 2018/12/10 15:47:19 by mmervoye         ###   ########.fr        #
+#    Updated: 2019/01/08 10:36:48 by mmervoye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,8 +88,7 @@ SRC_NAME= ft_atoi.c \
 	  ft_tolower.c \
 	  ft_toupper.c \
 	  get_next_line.c \
-	  ft_count_word.c\
-	  malloc_error.c
+	  ft_count_word.c
 
 
 INC		= $(addprefix -I,$(INC_PATH))

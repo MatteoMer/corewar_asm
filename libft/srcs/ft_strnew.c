@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 12:50:40 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/08/28 17:07:57 by xmazella         ###   ########.fr       */
+/*   Updated: 2019/01/08 10:34:26 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char			*ft_strnew(size_t size)
 
 	str = (char *)malloc(sizeof(*str) * size + 1);
 	if (!str)
-		return ((char *)malloc_error());
+		return (NULL);
 	ft_bzero(str, size);
 	str[size] = '\0';
 	return (str);

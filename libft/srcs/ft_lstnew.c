@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 18:35:14 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/08/28 17:04:21 by xmazella         ###   ########.fr       */
+/*   Updated: 2019/01/08 10:36:16 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 
 	new = (t_list *)malloc(sizeof(t_list));
 	if (!new)
-		malloc_error();
+		return (NULL);
 	if (!content)
 	{
 		new->content = NULL;
