@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 11:21:18 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/08 15:20:53 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/10 18:52:29 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ int					line_parse(char *line, t_asm *asm_h)
 		{
 			if (err < 0)
 				return (err);
-			add_label(&line, asm_h);
+			err = add_label(&line, asm_h);
 		}
+		if (*line && *line != COMMENT_CHAR)
+			err = get_instructions(asm_h, &line);
 	}
 	if (err < 0)
 		return (err);

@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 10:24:15 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/08 15:08:03 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/10 18:48:49 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int					asm_error(int err)
 		"name too long!",
 		"comment too long!",
 		"lexing error",
+		"operator doesn't exist",
 		""
 	};
 	err *= -1;

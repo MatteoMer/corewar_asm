@@ -6,7 +6,7 @@
 #    By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 14:36:04 by mmervoye          #+#    #+#              #
-#    Updated: 2019/01/08 15:08:38 by mmervoye         ###   ########.fr        #
+#    Updated: 2019/01/10 19:00:18 by mmervoye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = gcc
 
 # Set the flags used by the compiler, if DEBUG=yes, use debug flags
 ifeq ($(DEBUG), yes)
-	CFLAGS = -Wall -Wextra -fsanitize=address -g3
+	CFLAGS = -Wall -Wextra -fsanitize=address -g
 else
 	CFLAGS = -Wall -Wextra -Werror
 endif
@@ -28,13 +28,14 @@ OBJ_PATH = ./objs/
 INC_PATH = ./incs/
 SRC_PATH = ./srcs/
 
-# Defining explicites sources and objects
+# Defining explicit sources and objects
 SRC_NAME = main.c\
 		   error.c\
 		   file.c\
 		   parse.c\
 		   misc.c\
-		   label.c
+		   label.c\
+		   instructions.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
