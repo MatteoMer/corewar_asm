@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 11:21:18 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/10 18:52:29 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/14 12:50:33 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int					get_name(char *line, t_asm *asm_h)
 	line = asm_strnext(line);
 	if (*line == 0 || *line == COMMENT_CHAR)
 		return (-4);
+	//check for "
+	line++;
+	line[ft_strlen(line) - 1] = 0;
 	if (ft_strlen(line) > PROG_NAME_LENGTH)
 		return (-6);
 	ft_bzero(asm_h->prog_name, PROG_NAME_LENGTH);
@@ -31,6 +34,9 @@ int					get_comment(char *line, t_asm *asm_h)
 	line = asm_strnext(line);
 	if (*line == 0 || *line == COMMENT_CHAR)
 		return (-5);
+	//check for "
+	line++;
+	line[ft_strlen(line) - 1] = 0;
 	if (ft_strlen(line) > COMMENT_LENGTH)
 		return (-7);
 	ft_bzero(asm_h->comment, COMMENT_LENGTH);
@@ -55,7 +61,7 @@ int					line_parse(char *line, t_asm *asm_h)
 			err = add_label(&line, asm_h);
 		}
 		if (*line && *line != COMMENT_CHAR)
-			err = get_instructions(asm_h, &line);
+			err = new_instruction(asm_h, &line);
 	}
 	if (err < 0)
 		return (err);
@@ -80,5 +86,9 @@ int					parse(t_asm *asm_h)
 	}
 	if (ret < 0)
 		return (malloc_error());
+	if (*asm_h->comment == 0 || *asm_h->prog_name == 0)
+		return (-11);
+	if ((ret = parse_labels(asm_h)) < 0)
+		return (ret);
 	return (0);
 }

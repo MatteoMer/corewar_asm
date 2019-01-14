@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_word.c                                    :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matteo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/01 16:20:27 by matteo            #+#    #+#             */
-/*   Updated: 2019/01/11 13:47:46 by mmervoye         ###   ########.fr       */
+/*   Created: 2019/01/14 16:32:17 by mmervoye          #+#    #+#             */
+/*   Updated: 2019/01/14 16:34:47 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_count_word(const char *s, char c)
+int					ft_numlen(int nb)
 {
-	int		count;
-	int		in_word;
+	int			len;
 
-	in_word = 0;
-	count = 0;
-	while (*s)
+	len = 0;
+	while (nb)
 	{
-		if (in_word == 1 && *s == c)
-			in_word = 0;
-		if (in_word == 0 && *s != c)
-		{
-			in_word = 1;
-			count++;
-		}
-		s++;
+		nb /= 10;
+		len++;
 	}
-	return (count);
+	return (nb == 0 ? 1 : len);
 }

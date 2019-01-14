@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 14:59:57 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/10 18:12:25 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/14 13:23:50 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,9 @@ int				main(int argc, char **argv)
 		return (asm_error(err_check));
 	if ((err_check = parse(&asm_h)) < 0)
 		return (asm_error(err_check));
+	if ((err_check = writing(&asm_h)) < 0)
+		return (asm_error(err_check));
+	ft_putstr("Writing output program to ");
+	ft_putendl(asm_h.output_name);
 	return (0);
 }

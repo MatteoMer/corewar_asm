@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 10:24:15 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/10 18:48:49 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/14 12:38:11 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int					asm_error(int err)
 		"comment too long!",
 		"lexing error",
 		"operator doesn't exist",
+		"invalid number of parameters",
+		"there's no name and/or comment",
+		"invalid instruction",
+		"invalid label",
+		"can't create file",
 		""
 	};
 	err *= -1;

@@ -6,7 +6,7 @@
 /*   By: mmervoye <mmervoye@student.42.fd>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 12:45:47 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/08 10:36:36 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:33:56 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void				*ft_memchr(const void *s, int c, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
+int					ft_numlen(int nb);
 int					ft_strclen(char *str, char c);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
@@ -91,5 +92,6 @@ t_list				*ft_tab_to_list(char **tab);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstnew(const void *content, size_t content_size);
 t_list				*ft_lstreverse(t_list *lst);
+int					ft_count_word(const char *s, char c);
 
 #endif

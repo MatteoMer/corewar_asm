@@ -6,7 +6,7 @@
 #    By: xmazella <xmazella@student.42.fd>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:06:35 by mmervoye          #+#    #+#              #
-#    Updated: 2019/01/08 10:36:48 by mmervoye         ###   ########.fr        #
+#    Updated: 2019/01/14 16:33:33 by mmervoye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ OBJ_NAME= $(SRC_NAME:.c=.o)
 
 SRC_NAME= ft_atoi.c \
 	  ft_bzero.c \
+	  ft_count_word.c\
 	  ft_deltab.c \
 	  ft_delfunction.c \
 	  ft_isalnum.c \
@@ -47,6 +48,7 @@ SRC_NAME= ft_atoi.c \
 	  ft_memdel.c \
 	  ft_memmove.c \
 	  ft_memset.c \
+	  ft_numlen.c\
 	  ft_putchar.c \
 	  ft_putchar_fd.c \
 	  ft_putendl.c \

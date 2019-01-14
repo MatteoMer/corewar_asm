@@ -6,7 +6,7 @@
 #    By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 14:36:04 by mmervoye          #+#    #+#              #
-#    Updated: 2019/01/10 19:00:18 by mmervoye         ###   ########.fr        #
+#    Updated: 2019/01/14 14:58:13 by mmervoye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,12 @@ SRC_NAME = main.c\
 		   error.c\
 		   file.c\
 		   parse.c\
+		   parse_labels.c\
 		   misc.c\
 		   label.c\
-		   instructions.c
+		   instructions.c\
+		   writing.c\
+		   write_instructions.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))

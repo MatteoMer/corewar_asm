@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:23:10 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/10 19:00:40 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:28:40 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define ASM_H
 # include "libft.h"
 # include <fcntl.h>
-# define PROG_NAME_LENGTH		(128)
-# define COMMENT_LENGTH			(2048)
+# define PROG_NAME_LENGTH		128
+# define COMMENT_LENGTH			2048
 # define COREWAR_EXEC_MAGIC		0xea83f3
 # define NAME_CMD_STRING		".name"
 # define COMMENT_CMD_STRING		".comment"
@@ -25,6 +25,9 @@
 # define T_REG					1
 # define T_DIR					2
 # define T_IND					4
+# define DIRECT_CHAR			'%'
+# define SEPARATOR_CHAR			','
+# define REG_NUMBER				16
 
 typedef struct		s_op
 {
@@ -44,6 +47,7 @@ typedef struct			s_asm
 	int					magic;
 	int					fd;
 	t_list				*label_list;
+	t_list				*list_instruction;
 	int					addr;
 	t_op				op[17];
 }						t_asm;
@@ -54,11 +58,22 @@ typedef struct			s_label
 	char				*name;
 }						t_label;
 
+typedef struct			s_params
+{
+	int					type;
+	char				*content;
+	int					is_label;
+	int					label_addr;
+	int					size;
+	struct s_params		*next;
+}						t_params;
+
 typedef struct			s_instruction
 {
 	char				*name;
 	int					addr;
 	t_op				*op;
+	t_params			*params;//need to reverse the list
 }						t_instruction;
 
 
@@ -71,5 +86,11 @@ int					is_a_label(char *line);
 int					add_label(char **line, t_asm *asm_h);
 int					init_op_tab(t_asm *asm_h);
 int					get_instructions(t_asm *asm_h, char **line);
+int					new_instruction(t_asm *asm_h, char **line);
+int					parse_labels(t_asm *asm_h);
+int					writing(t_asm *asm_h);
+int					write_instructions(t_asm *asm_h);
+t_list				*reverse_list(t_list *lst);
+t_params			*reverse_params(t_params *list);
 
 #endif
