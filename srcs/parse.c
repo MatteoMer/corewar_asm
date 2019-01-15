@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 11:21:18 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/14 12:50:33 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:02:08 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int					parse(t_asm *asm_h)
 			return (err);
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	if (ret < 0)
 		return (malloc_error());
 	if (*asm_h->comment == 0 || *asm_h->prog_name == 0)

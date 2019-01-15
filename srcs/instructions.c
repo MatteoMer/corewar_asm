@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:50:55 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/14 12:14:28 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:15:14 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,8 @@ int						get_instructions(t_asm *asm_h, char **line)
 
 	if ((new = (t_instruction *)malloc(sizeof(t_instruction))) == NULL)
 		return (malloc_error());
-	if ((ptr = ft_strchr(*line, ' ')) == NULL)
+	if ((ptr = asm_get_lastspace(*line)) == NULL)
 		return (-12);
-	*ptr = 0;
 	if ((new->name = ft_strdup(*line)) == NULL)
 		return (malloc_error());
 	if (op_exist(new->name, asm_h, new) < 0)

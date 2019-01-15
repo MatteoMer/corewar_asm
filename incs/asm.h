@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:23:10 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/14 16:28:40 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/15 13:55:43 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ int					writing(t_asm *asm_h);
 int					write_instructions(t_asm *asm_h);
 t_list				*reverse_list(t_list *lst);
 t_params			*reverse_params(t_params *list);
+char				*asm_get_lastspace(char *str);
+int					write_uint(int fd, int size, int nb);
 
 #endif

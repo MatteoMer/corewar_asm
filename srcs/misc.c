@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 11:29:46 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/14 15:34:10 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/15 12:17:35 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char			*asm_strnext(char *str)
 {
-	while (ft_isspace(*str))
+	while (*str && ft_isspace(*str))
 		str++;
 	return (str);
 }
@@ -78,4 +78,30 @@ t_list			*reverse_list(t_list *lst)
 		b = c;
 	}
 	return (a);
+}
+
+char				*asm_get_lastspace(char *str)
+{
+	char		*ptr1;
+	char		*ptr2;
+	char		*ret;
+
+	ret = NULL;
+	ptr1 = NULL;
+	ptr2 = NULL;
+	ptr1 = ft_strchr(str, ' ');
+	ptr2 = ft_strchr(str, '\t');
+	if (!ptr1 && !ptr2)
+		return (NULL);
+	else if (!ptr2)
+		ret = ptr1;
+	else if (!ptr1)
+		ret = ptr2;
+	else if (ptr2 < ptr1)
+		ret = ptr2;
+	else
+		ret = ptr1;
+	if (ret)
+		*ret = 0;
+	return (ret);
 }

@@ -50,5 +50,5 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-
-vm_champs #ressources
+*.cor
+./vm_champs #ressources

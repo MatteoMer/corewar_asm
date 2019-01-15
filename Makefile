@@ -6,7 +6,7 @@
 #    By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 14:36:04 by mmervoye          #+#    #+#              #
-#    Updated: 2019/01/14 14:58:13 by mmervoye         ###   ########.fr        #
+#    Updated: 2019/01/15 15:34:38 by mmervoye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = gcc
 
 # Set the flags used by the compiler, if DEBUG=yes, use debug flags
 ifeq ($(DEBUG), yes)
-	CFLAGS = -Wall -Wextra -fsanitize=address -g
+	CFLAGS = -Wall -Wextra -g
 else
 	CFLAGS = -Wall -Wextra -Werror
 endif
@@ -60,7 +60,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ_PATH) $(OBJ)
 	@printf "$(YELLOW)Compiling $(NAME)"
-	@$(CC) $(CFLAGS) -o $(NAME) -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(LIBFT_FLAG) -o $(NAME) $(OBJ)
+	@$(CC) $(CFLAGS) -o $(NAME) -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(LIBFT_FLAG) -o $(NAME) $(OBJ) -g3
 	@printf $(DONE)
 	@printf "$(GREEN)makefile: $(NAME) compiled !\n"
 

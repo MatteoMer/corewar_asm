@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 12:28:56 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/14 17:35:05 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/15 13:55:35 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,27 @@ int					write_zero(int fd, int size)
 	return (0);
 }
 
+int					write_uint(int fd, int size, int nb)
+{
+	char			ret[5];
+	unsigned int	len;
+
+	len = nb;
+	ft_bzero(ret, 5);
+	while (len)
+	{
+		ret[len - 1] = size % 256;
+		size /= 256;
+		len--;
+	}
+	while (len < 4)
+	{
+		write(fd, &(ret[len]), 1);
+		len++;
+	}
+	return (0);
+}
+
 int					writing(t_asm *asm_h)
 {
 	asm_h->fd = open(asm_h->output_name, O_CREAT | O_TRUNC \
@@ -48,7 +69,8 @@ int					writing(t_asm *asm_h)
 		return (-14);
 	write_magic(asm_h);
 	write(asm_h->fd, asm_h->prog_name, PROG_NAME_LENGTH);
-	write_zero(asm_h->fd, 8);//CHANGE BY SIZE (asm_h->addr)
+	write_zero(asm_h->fd, 4);
+	write_uint(asm_h->fd, asm_h->addr, 4);
 	write(asm_h->fd, asm_h->comment, COMMENT_LENGTH);
 	write_zero(asm_h->fd, 4);
 	write_instructions(asm_h);
