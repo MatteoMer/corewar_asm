@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 15:00:48 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/14 11:59:55 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/16 15:56:13 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ int						add_label(char **line, t_asm *asm_h)
 	*ptr = 0;
 	if ((new->name = ft_strdup(*line)) == NULL)
 		return (malloc_error());
+	if (*new->name == 0)
+	{
+		ft_strdel(&new->name);
+		free(new);
+		return (-8);
+	}
 	*ptr = ':';
 	ptr = asm_strnext(ptr + 1);
 	new->addr = asm_h->addr;

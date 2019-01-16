@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 11:21:18 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/15 16:02:08 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/16 15:55:17 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ int					line_parse(char *line, t_asm *asm_h)
 	{
 		while ((err = is_a_label(line)))
 		{
+			if (err >= 0)
+				err = add_label(&line, asm_h);
 			if (err < 0)
 				return (err);
-			err = add_label(&line, asm_h);
 		}
 		if (*line && *line != COMMENT_CHAR)
 			err = new_instruction(asm_h, &line);
