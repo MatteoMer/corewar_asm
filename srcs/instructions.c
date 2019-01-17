@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:50:55 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/15 16:15:14 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:15:33 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,14 @@ int						get_params(t_asm *asm_h, char *line, t_instruction *new)
 			return (malloc_error());
 		tmp->type = get_type_param(param_tab[i]);
 		tmp->content = ft_strtrim(param_tab[i]);
+		if (*(tmp->content) == 0)
+		{
+			free(tmp->content);
+			free(tmp);
+			ft_deltab(&param_tab);
+			return (-8);
+			//free params should be a good idea
+		}
 		check_label_and_size(new, asm_h, &tmp);
 		tmp->next = params;
 		params = tmp;
