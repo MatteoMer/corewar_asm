@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 15:00:48 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/16 15:56:13 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/17 10:29:30 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int						is_a_label(char *line)
 	while (i < len)
 	{
 		if (!ft_strchr(LABEL_CHARS, line[i]))
-			return (0);
+			return (-8);
 		i++;
 	}
 	return (1);
