@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:50:55 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/16 16:15:33 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/17 11:26:35 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,26 @@ int						check_label_and_size(t_instruction *i, t_asm *asm_h, t_params **param)
 	return (0);
 }
 
+int						check_type_args(char **param_tab, t_instruction *new)
+{
+	int				i;
+	int				*arg_type;
+	char			*tmp;
+
+	arg_type = new->op->type_param;
+	i = -1;
+	while (++i < new->op->nb_params)
+	{
+		tmp = asm_strnext(param_tab[i]);
+		if ((arg_type[i] & get_type_param(tmp)) == 0)
+		{
+			ft_deltab(&param_tab);
+			return (-15);
+		}
+	}
+	return (0);
+}
+
 int						get_params(t_asm *asm_h, char *line, t_instruction *new)
 {
 	t_params		*params;
@@ -66,12 +86,14 @@ int						get_params(t_asm *asm_h, char *line, t_instruction *new)
 	char			**param_tab;
 	int				i;
 
-	i = -1;
 	params = NULL;
 	if (ft_count_word(line, SEPARATOR_CHAR) != new->op->nb_params)
 		return (-10);
 	if ((param_tab = ft_strsplit(line, SEPARATOR_CHAR)) == NULL)
 		return (malloc_error());
+	if ((i = check_type_args(param_tab, new)) < 0)
+		return (i);
+	i = -1;
 	while (++i < new->op->nb_params)
 	{
 		if ((tmp = (t_params *)malloc(sizeof(t_params))) == NULL)
@@ -109,7 +131,7 @@ int						get_instructions(t_asm *asm_h, char **line)
 	if ((new->name = ft_strdup(*line)) == NULL)
 		return (malloc_error());
 	if (op_exist(new->name, asm_h, new) < 0)
-		return (-9);
+		return (-8);
 	new->addr = asm_h->addr;
 	asm_h->addr += new->op->to_encode == 0 ? 1 : 2;
 	*ptr = ' ';

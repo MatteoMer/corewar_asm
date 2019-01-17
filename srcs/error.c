@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 10:24:15 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/17 10:32:47 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/17 11:20:05 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int					asm_error(int err)
 		"invalid instruction",
 		"invalid label",
 		"can't create file",
+		"invalid parameter type",
 		""
 	};
 	err *= -1;
