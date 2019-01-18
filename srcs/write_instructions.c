@@ -6,37 +6,34 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:07:53 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/18 16:48:51 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 16:59:15 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int					write_ocp(t_asm *asm_h, t_instruction *instr)
+int					write_ocp(t_asm *asm_h, t_params *params, t_instruction *instr)
 {
 	int				ocp;
 	t_params		*ptr;
 
 	ocp = 0;
-	ptr = instr->params;
+	ptr = params;
 	(ptr->type == T_REG) ? ocp |= 0b01000000 : 0;
 	(ptr->type == T_DIR) ? ocp |= 0b10000000 : 0;
 	(ptr->type == T_IND) ? ocp |= 0b11000000 : 0;
-	printf("%d\n", ptr->type);
 	ptr = ptr->next;
 	if (ptr && instr->op->nb_params >= 1)
 	{
 		(ptr->type == T_REG) ? ocp |= 0b00010000 : 0;
 		(ptr->type == T_DIR) ? ocp |= 0b00100000 : 0;
 		(ptr->type == T_IND) ? ocp |= 0b00110000 : 0;
-		printf("%d\n", ptr->type);
 		ptr = ptr->next;
 		if (ptr && instr->op->nb_params >= 2)
 		{
 			(ptr->type == T_REG) ? ocp |= 0b00000100 : 0;
 			(ptr->type == T_DIR) ? ocp |= 0b00001000 : 0;
 			(ptr->type == T_IND) ? ocp |= 0b00001100 : 0;
-			printf("%d\n", ptr->type);
 		}
 	}
 	write(asm_h->fd, &ocp, 1);
@@ -95,7 +92,7 @@ int					process_instruction(t_asm *asm_h, t_instruction *instr)
 	ptr = params;
 	write(asm_h->fd, &(instr->op->op_code), 1);
 	if (instr->op->to_encode == 1)
-		write_ocp(asm_h, instr);
+		write_ocp(asm_h, ptr, instr);
 	while (++i < instr->op->nb_params)
 	{
 		if (params->is_label)
