@@ -6,60 +6,13 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:50:55 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/17 11:26:35 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 15:06:20 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int						op_exist(char *name, t_asm *asm_h, t_instruction *new)
-{
-	int				i;
-
-	i = -1;
-	while (asm_h->op[++i].name)
-	{
-		if (!ft_strcmp(asm_h->op[i].name, name))
-		{
-			new->op = &asm_h->op[i];
-			return (0);
-		}
-	}
-	return (-1);
-}
-
-int						get_type_param(char *param)
-{
-	param = asm_strnext(param);
-	if (*param == DIRECT_CHAR)
-		return (T_DIR);
-	else if (*param == 'r')
-		return (T_REG);
-	return (T_IND);
-}
-
-int						get_size_param(t_instruction *i, t_asm *asm_h, t_params *param)
-{
-	if (param->type == T_DIR)
-		param->size = i->op->dir_size;
-	else if (param->type == T_REG)
-		param->size = 1;
-	else
-		param->size = 2;
-	return (0);
-}
-
-int						check_label_and_size(t_instruction *i, t_asm *asm_h, t_params **param)
-{
-	get_size_param(i, asm_h, *param);
-	if (ft_strchr((*param)->content, LABEL_CHAR))
-		(*param)->is_label = 1;
-	else
-		(*param)->is_label = 0;
-	return (0);
-}
-
-int						check_type_args(char **param_tab, t_instruction *new)
+int						check_type_args(t_asm *asm_h, char **param_tab, t_instruction *new)
 {
 	int				i;
 	int				*arg_type;
@@ -79,41 +32,45 @@ int						check_type_args(char **param_tab, t_instruction *new)
 	return (0);
 }
 
-int						get_params(t_asm *asm_h, char *line, t_instruction *new)
+t_params				*create_param(char *type)
 {
-	t_params		*params;
+	t_params			*new;
+
+	new = NULL;
+	if ((new = (t_params *)malloc(sizeof(t_params))) == NULL)
+		return (NULL);
+	new->type = get_type_param(type);
+	new->content = ft_strtrim(type);
+	if (!new->content)
+		return (NULL);
+	return (new);
+}
+
+int						get_params(t_asm *asm_h, char *line, \
+		t_instruction *new, int i)
+{
 	t_params		*tmp;
 	char			**param_tab;
-	int				i;
 
-	params = NULL;
+	new->params = NULL;
 	if (ft_count_word(line, SEPARATOR_CHAR) != new->op->nb_params)
 		return (-10);
 	if ((param_tab = ft_strsplit(line, SEPARATOR_CHAR)) == NULL)
 		return (malloc_error());
-	if ((i = check_type_args(param_tab, new)) < 0)
+	if ((i = check_type_args(asm_h, param_tab, new)) < 0)
 		return (i);
 	i = -1;
 	while (++i < new->op->nb_params)
 	{
-		if ((tmp = (t_params *)malloc(sizeof(t_params))) == NULL)
+		if ((tmp = create_param(param_tab[i])) == NULL)
 			return (malloc_error());
-		tmp->type = get_type_param(param_tab[i]);
-		tmp->content = ft_strtrim(param_tab[i]);
 		if (*(tmp->content) == 0)
-		{
-			free(tmp->content);
-			free(tmp);
-			ft_deltab(&param_tab);
-			return (-8);
-			//free params should be a good idea
-		}
-		check_label_and_size(new, asm_h, &tmp);
-		tmp->next = params;
-		params = tmp;
+			return (free_and_ret_err(tmp->content, tmp, param_tab, 8));
+		check_label_and_size(new, &tmp);
+		tmp->next = new->params;
+		new->params = tmp;
 		asm_h->addr += tmp->size;
 	}
-	new->params = params;
 	ft_deltab(&param_tab);
 	return (0);
 }
@@ -136,8 +93,8 @@ int						get_instructions(t_asm *asm_h, char **line)
 	asm_h->addr += new->op->to_encode == 0 ? 1 : 2;
 	*ptr = ' ';
 	ptr++;
-	if ((err = get_params(asm_h, ptr, new)) < 0)
-		return (err);
+	if ((err = get_params(asm_h, ptr, new, -1)) < 0)
+		return (free_and_ret_err(new->name, new, NULL, err));
 	asm_h->list_instruction->content = new;
 	*line += ft_strlen(*line);
 	return (0);
@@ -148,6 +105,7 @@ int						new_instruction(t_asm *asm_h, char **line)
 	t_list				*tmp;
 	int					err;
 
+	tmp = NULL;
 	if (asm_h->list_instruction == NULL)
 	{
 		if ((asm_h->list_instruction = ft_lstnew(NULL, 0)) == NULL)

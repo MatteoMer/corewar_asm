@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 12:28:56 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/15 13:55:35 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 13:46:30 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,5 @@ int					writing(t_asm *asm_h)
 	write_uint(asm_h->fd, asm_h->addr, 4);
 	write(asm_h->fd, asm_h->comment, COMMENT_LENGTH);
 	write_zero(asm_h->fd, 4);
-	write_instructions(asm_h);
-	return (0);
+	return (write_instructions(asm_h));
 }

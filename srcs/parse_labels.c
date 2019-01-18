@@ -6,13 +6,14 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:19:02 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/14 17:26:10 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 13:22:50 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int						get_label_addr(t_list *labels, t_instruction *instruction, t_params *param)
+int						get_label_addr(t_list *labels,\
+		t_instruction *instruction, t_params *param)
 {
 	char			*label;
 
@@ -21,7 +22,8 @@ int						get_label_addr(t_list *labels, t_instruction *instruction, t_params *pa
 	{
 		if (!ft_strcmp(((t_label *)labels->content)->name, label))
 		{
-			param->label_addr = ((t_label *)labels->content)->addr - instruction->addr;
+			param->label_addr = ((t_label *)labels->content)->addr \
+								- instruction->addr;
 			return (0);
 		}
 		labels = labels->next;
@@ -36,13 +38,15 @@ int						parse_labels(t_asm *asm_h)
 	int				err;
 
 	list_instructions = asm_h->list_instruction;
+	ptr_param_list = NULL;
 	while (list_instructions)
 	{
 		ptr_param_list = ((t_instruction *)list_instructions->content)->params;
 		while (ptr_param_list)
 		{
 			if (ptr_param_list->is_label == 1)
-				err = get_label_addr(asm_h->label_list, list_instructions->content, ptr_param_list);
+				err = get_label_addr(asm_h->label_list, \
+						list_instructions->content, ptr_param_list);
 			if (err < 0)
 				return (err);
 			ptr_param_list = ptr_param_list->next;

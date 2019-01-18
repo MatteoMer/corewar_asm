@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 12:42:27 by mmervoye          #+#    #+#             */
-/*   Updated: 2017/11/09 12:47:31 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 14:30:33 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void		ft_memdel(void **ap)
 {
+	if (*ap == NULL)
+		return ;
 	free(*ap);
 	*ap = NULL;
 }

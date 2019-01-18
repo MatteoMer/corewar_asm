@@ -6,7 +6,7 @@
 #    By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 14:36:04 by mmervoye          #+#    #+#              #
-#    Updated: 2019/01/15 15:34:38 by mmervoye         ###   ########.fr        #
+#    Updated: 2019/01/18 13:07:37 by mmervoye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,10 @@ SRC_NAME = main.c\
 		   parse.c\
 		   parse_labels.c\
 		   misc.c\
+		   misc2.c\
 		   label.c\
 		   instructions.c\
+		   instructions2.c\
 		   writing.c\
 		   write_instructions.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -71,7 +73,7 @@ $(OBJ_PATH):
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@printf "$(GREEN)Compiling $@"
-	@$(CC) $(CC_FLAG) -I $(INC_PATH) -I $(LIBFT_INC_PATH) -o $@ -c $<
+	@$(CC) $(CFLAGS) -I $(INC_PATH) -I $(LIBFT_INC_PATH) -o $@ -c $<
 	@printf $(DONE)
 
 clean:

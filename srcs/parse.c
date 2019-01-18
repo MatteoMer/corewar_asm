@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 11:21:18 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/17 10:29:13 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 14:53:12 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int					line_parse(char *line, t_asm *asm_h)
 	err = 0;
 	if (!ft_strncmp(NAME_CMD_STRING, line, ft_strlen(NAME_CMD_STRING)))
 		err = get_name(line, asm_h);
-	else if (!ft_strncmp(COMMENT_CMD_STRING, line, ft_strlen(COMMENT_CMD_STRING)))
+	else if (!ft_strncmp(COMMENT_CMD_STRING, line,\
+			ft_strlen(COMMENT_CMD_STRING)))
 		err = get_comment(line, asm_h);
 	else
 	{
@@ -83,7 +84,10 @@ int					parse(t_asm *asm_h)
 		if (!(*tmp == COMMENT_CHAR || *tmp == 0))
 			err = line_parse(tmp, asm_h);
 		if (err < 0)
+		{
+		ft_strdel(&line);
 			return (err);
+		}
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
