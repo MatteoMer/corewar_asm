@@ -1,0 +1,145 @@
+Writing output program to ./examples/_.cor
+Writing output program to ./examples/_honeybadger.cor
+Writing output program to ./examples/Asombra.cor
+Writing output program to ./examples/Bazou.cor
+Writing output program to ./examples/bee_gees.cor
+Writing output program to ./examples/big_feet.cor
+Writing output program to ./examples/bigzork.cor
+Writing output program to ./examples/casimir.cor
+Writing output program to ./examples/champ.cor
+Writing output program to ./examples/Code_eater.cor
+Writing output program to ./examples/corelol.cor
+Writing output program to ./examples/darksasuke.cor
+Writing output program to ./examples/doge.cor
+Writing output program to ./examples/Douceur_power.cor
+Writing output program to ./examples/dubo.cor
+Writing output program to ./examples/echo.cor
+Writing output program to ./examples/Eraser.cor
+Writing output program to ./examples/Explosive_Kitty.cor
+Writing output program to ./examples/fast.cor
+Writing output program to ./examples/fluttershy.cor
+Writing output program to ./examples/ForgottenOne.cor
+Writing output program to ./examples/gateau.cor
+Writing output program to ./examples/gedeon.cor
+Writing output program to ./examples/helltrain.cor
+Writing output program to ./examples/Hidden.cor
+Writing output program to ./examples/Horace.cor
+Writing output program to ./examples/Izi_Miaou.cor
+Writing output program to ./examples/jinx.cor
+Writing output program to ./examples/justin_bee.cor
+Writing output program to ./examples/kamelkaze.cor
+Writing output program to ./examples/Kappa.cor
+Writing output program to ./examples/katchup.cor
+Writing output program to ./examples/Kitty_Miaou.cor
+Writing output program to ./examples/Kittystrophic.cor
+Writing output program to ./examples/lapsang.cor
+Writing output program to ./examples/le_pet_de_nonne.cor
+Writing output program to ./examples/littlepuppy.cor
+Writing output program to ./examples/live.cor
+Writing output program to ./examples/loose.cor
+Writing output program to ./examples/lou_forktologue.cor
+Writing output program to ./examples/Machine-gun.cor
+Writing output program to ./examples/mandragore.cor
+Writing output program to ./examples/MarineKing.cor
+Writing output program to ./examples/master_of_puppets.cor
+Writing output program to ./examples/meowluigi.cor
+Writing output program to ./examples/Misaka_Mikoto.cor
+Writing output program to ./examples/mise_a_jour_windows95.cor
+Writing output program to ./examples/NoIdea.cor
+Writing output program to ./examples/O-Maley_Miaou.cor
+Writing output program to ./examples/overwatch.cor
+Writing output program to ./examples/pai_mu_tan.cor
+Writing output program to ./examples/Rainbow_dash.cor
+Writing output program to ./examples/run_Kitty_RUN.cor
+Writing output program to ./examples/salamahenagalabadoun.cor
+Writing output program to ./examples/sam_2.0.cor
+Writing output program to ./examples/sencha.cor
+Writing output program to ./examples/skynet.cor
+Writing output program to ./examples/Stargate0_1.cor
+Writing output program to ./examples/tchupka.cor
+Writing output program to ./examples/terminator.cor
+Writing output program to ./examples/TheHarvester.cor
+Writing output program to ./examples/THUNDER.cor
+Writing output program to ./examples/turtle.cor
+Writing output program to ./examples/ultima.cor
+Writing output program to ./examples/ultimate-surrender.cor
+Writing output program to ./examples/Varimathras.cor
+Writing output program to ./examples/Wall.cor
+Writing output program to ./examples/wave.cor
+Writing output program to ./examples/youforkmytralala.cor
+Writing output program to ./examples/zork.cor
+----- >> DIFF CHECKER ASM << -----
+
+->> _.s <--
+->> _honeybadger.s <--
+->> Asombra.s <--
+->> Bazou.s <--
+->> bee_gees.s <--
+->> big_feet.s <--
+->> bigzork.s <--
+->> casimir.s <--
+->> champ.s <--
+->> Code_eater.s <--
+->> corelol.s <--
+->> darksasuke.s <--
+->> doge.s <--
+->> Douceur_power.s <--
+->> dubo.s <--
+->> echo.s <--
+->> Eraser.s <--
+->> Explosive_Kitty.s <--
+->> fast.s <--
+->> fluttershy.s <--
+->> ForgottenOne.s <--
+->> gateau.s <--
+->> gedeon.s <--
+->> helltrain.s <--
+->> Hidden.s <--
+->> Horace.s <--
+->> Izi_Miaou.s <--
+->> jinx.s <--
+->> justin_bee.s <--
+->> kamelkaze.s <--
+->> Kappa.s <--
+->> katchup.s <--
+->> Kitty_Miaou.s <--
+->> Kittystrophic.s <--
+->> lapsang.s <--
+->> le_pet_de_nonne.s <--
+->> littlepuppy.s <--
+->> live.s <--
+->> loose.s <--
+->> lou_forktologue.s <--
+->> Machine-gun.s <--
+->> mandragore.s <--
+->> MarineKing.s <--
+->> master_of_puppets.s <--
+->> meowluigi.s <--
+->> Misaka_Mikoto.s <--
+->> mise_a_jour_windows95.s <--
+->> NoIdea.s <--
+->> O-Maley_Miaou.s <--
+->> overwatch.s <--
+->> pai_mu_tan.s <--
+->> Rainbow_dash.s <--
+->> run_Kitty_RUN.s <--
+->> salamahenagalabadoun.s <--
+->> sam_2.0.s <--
+->> sencha.s <--
+->> skynet.s <--
+->> Stargate0_1.s <--
+->> tchupka.s <--
+->> terminator.s <--
+->> TheHarvester.s <--
+->> THUNDER.s <--
+->> turtle.s <--
+->> ultima.s <--
+->> ultimate-surrender.s <--
+->> Varimathras.s <--
+->> Wall.s <--
+->> wave.s <--
+->> youforkmytralala.s <--
+->> zork.s <--
+
+
+No output ? Good news ;)

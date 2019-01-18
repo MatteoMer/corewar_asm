@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 11:21:18 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/18 14:53:12 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 19:57:55 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,45 @@
 
 int					get_name(char *line, t_asm *asm_h)
 {
+	char		*tmp;
+
 	line += ft_strlen(NAME_CMD_STRING);
 	line = asm_strnext(line);
 	if (*line == 0 || *line == COMMENT_CHAR)
 		return (-4);
-	//check for "
-	line++;
-	line[ft_strlen(line) - 1] = 0;
-	if (ft_strlen(line) > PROG_NAME_LENGTH)
+	if ((tmp = get_line_comment_name(line, asm_h)) == NULL)
+		return (-1);
+	*(ft_strchr(tmp, '"')) = 0;
+	if (ft_strlen(tmp) > PROG_NAME_LENGTH)
+	{
+		ft_strdel(&tmp);
 		return (-6);
+	}
 	ft_bzero(asm_h->prog_name, PROG_NAME_LENGTH);
-	ft_strcat(asm_h->prog_name, line);
+	ft_strcat(asm_h->prog_name, tmp);
+	ft_strdel(&tmp);
 	return (0);
 }
 
 int					get_comment(char *line, t_asm *asm_h)
 {
+	char		*tmp;
+
 	line += ft_strlen(COMMENT_CMD_STRING);
 	line = asm_strnext(line);
 	if (*line == 0 || *line == COMMENT_CHAR)
 		return (-5);
-	//check for "
-	line++;
-	line[ft_strlen(line) - 1] = 0;
-	if (ft_strlen(line) > COMMENT_LENGTH)
+	if ((tmp = get_line_comment_name(line, asm_h)) == NULL)
+		return (-1);
+	*(ft_strchr(tmp, '"')) = 0;
+	if (ft_strlen(tmp) > COMMENT_LENGTH)
+	{
+		ft_strdel(&tmp);
 		return (-7);
+	}
 	ft_bzero(asm_h->comment, COMMENT_LENGTH);
-	ft_strcat(asm_h->comment, line);
+	ft_strcat(asm_h->comment, tmp);
+	ft_strdel(&tmp);
 	return (0);
 }
 
@@ -85,7 +97,7 @@ int					parse(t_asm *asm_h)
 			err = line_parse(tmp, asm_h);
 		if (err < 0)
 		{
-		ft_strdel(&line);
+			ft_strdel(&line);
 			return (err);
 		}
 		ft_strdel(&line);
@@ -93,8 +105,6 @@ int					parse(t_asm *asm_h)
 	ft_strdel(&line);
 	if (ret < 0)
 		return (malloc_error());
-	if (*asm_h->comment == 0 || *asm_h->prog_name == 0)
-		return (-11);
 	if ((ret = parse_labels(asm_h)) < 0)
 		return (ret);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:05:35 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/18 13:47:12 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 20:43:32 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int						op_exist(char *name, t_asm *asm_h, t_instruction *new)
 	i = -1;
 	while (asm_h->op[++i].name)
 	{
-		if (!ft_strcmp(asm_h->op[i].name, name))
+		if (!ft_strncmp(asm_h->op[i].name, name, ft_strlen(asm_h->op[i].name)))
 		{
 			new->op = &asm_h->op[i];
-			return (0);
+			return (ft_strlen(asm_h->op[i].name));
 		}
 	}
 	return (-1);

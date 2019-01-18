@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:23:10 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/18 15:06:11 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 19:58:04 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int					write_uint(int fd, int size, int nb);
 char				*asm_strtrim(char *line);
 int					get_size_param(t_instruction *i, t_params *param);
 int					get_type_param(char *param);
-int					check_type_args(t_asm *asm_h, char **param_tab, t_instruction *new);
+int					check_type_args(char **param_tab, t_instruction *new);
 int					free_and_ret_err(void *to_free1, void *to_free2, \
 		char **tab_to_free, int ret);
 int					op_exist(char *name, t_asm *asm_h, t_instruction *new);
@@ -106,5 +106,8 @@ int					check_label_and_size(t_instruction *i,\
 		t_params **param);
 uint16_t			rev_endian16(uint16_t i);
 void				free_asm(t_asm *asm_h);
+char				*get_line_comment_name(char *line,\
+		t_asm *asm_h);
+int					asm_count_word(char *line);
 
 #endif

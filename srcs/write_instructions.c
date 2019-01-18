@@ -6,13 +6,14 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:07:53 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/18 16:59:15 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 20:48:03 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int					write_ocp(t_asm *asm_h, t_params *params, t_instruction *instr)
+int					write_ocp(t_asm *asm_h,\
+		t_params *params, t_instruction *instr)
 {
 	int				ocp;
 	t_params		*ptr;

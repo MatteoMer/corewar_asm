@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/10 16:50:55 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/18 15:06:20 by mmervoye         ###   ########.fr       */
+/*   Created: 2019/01/18 20:47:45 by mmervoye          #+#    #+#             */
+/*   Updated: 2019/01/18 20:47:46 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int						check_type_args(t_asm *asm_h, char **param_tab, t_instruction *new)
+int						check_type_args(char **param_tab, t_instruction *new)
 {
 	int				i;
 	int				*arg_type;
@@ -53,11 +53,11 @@ int						get_params(t_asm *asm_h, char *line, \
 	char			**param_tab;
 
 	new->params = NULL;
-	if (ft_count_word(line, SEPARATOR_CHAR) != new->op->nb_params)
+	if (asm_count_word(line) != new->op->nb_params)
 		return (-10);
 	if ((param_tab = ft_strsplit(line, SEPARATOR_CHAR)) == NULL)
 		return (malloc_error());
-	if ((i = check_type_args(asm_h, param_tab, new)) < 0)
+	if ((i = check_type_args(param_tab, new)) < 0)
 		return (i);
 	i = -1;
 	while (++i < new->op->nb_params)
@@ -80,19 +80,18 @@ int						get_instructions(t_asm *asm_h, char **line)
 	t_instruction		*new;
 	char				*ptr;
 	int					err;
+	int					ret;
 
 	if ((new = (t_instruction *)malloc(sizeof(t_instruction))) == NULL)
 		return (malloc_error());
-	if ((ptr = asm_get_lastspace(*line)) == NULL)
-		return (-12);
-	if ((new->name = ft_strdup(*line)) == NULL)
-		return (malloc_error());
-	if (op_exist(new->name, asm_h, new) < 0)
+	if ((ret = op_exist(*line, asm_h, new)) < 0)
 		return (-8);
+	*line = *line + ret;
+	if ((ptr = asm_strnext(*(line))) == NULL)
+		return (-12);
+	new->name = NULL;
 	new->addr = asm_h->addr;
 	asm_h->addr += new->op->to_encode == 0 ? 1 : 2;
-	*ptr = ' ';
-	ptr++;
 	if ((err = get_params(asm_h, ptr, new, -1)) < 0)
 		return (free_and_ret_err(new->name, new, NULL, err));
 	asm_h->list_instruction->content = new;

@@ -1,0 +1,19 @@
+srcs/instructions.c:	arg_type = new->op->type_param;
+srcs/instructions.c:	while (++i < new->op->nb_params)
+srcs/instructions.c:	new->type = get_type_param(type);
+srcs/instructions.c:	new->content = ft_strtrim(type);
+srcs/instructions.c:	if (!new->content)
+srcs/instructions.c:	new->params = NULL;
+srcs/instructions.c:	if (asm_count_word(line) != new->op->nb_params)
+srcs/instructions.c:	while (++i < new->op->nb_params)
+srcs/instructions.c:		tmp->next = new->params;
+srcs/instructions.c:		new->params = tmp;
+srcs/instructions.c:	if ((new->name = ft_strdup(*line)) == NULL)
+srcs/instructions.c:	new->addr = asm_h->addr;
+srcs/instructions.c:	asm_h->addr += new->op->to_encode == 0 ? 1 : 2;
+srcs/instructions.c:		return (free_and_ret_err(new->name, new, NULL, err));
+srcs/instructions2.c:			new->op = &asm_h->op[i];
+srcs/label.c:	if ((new->name = ft_strdup(*line)) == NULL)
+srcs/label.c:	if (*new->name == 0)
+srcs/label.c:		return (free_and_ret_err(new->name, new, NULL, -8));
+srcs/label.c:	new->addr = asm_h->addr;

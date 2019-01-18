@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 14:59:57 by mmervoye          #+#    #+#             */
-/*   Updated: 2019/01/18 15:06:50 by mmervoye         ###   ########.fr       */
+/*   Updated: 2019/01/18 20:49:42 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,20 @@ int				asm_usage(void)
 	return (-1);
 }
 
-void			free_asm(t_asm *asm_h)
+void			free_asm_p2(t_asm *asm_h)
 {
-	t_list		*next;
 	t_params	*params;
 	t_params	*next_param;
+	t_list		*next;
 
-	while (asm_h->label_list)
-	{
-		ft_strdel(&((t_label *)asm_h->label_list->content)->name);
-		ft_memdel(&(asm_h->label_list->content));
-		next = asm_h->label_list->next;
-		ft_memdel((void **)&(asm_h->label_list));
-		asm_h->label_list = next;
-	}
 	while (asm_h->list_instruction)
 	{
 		if (asm_h->list_instruction->content)
 		{
-			ft_strdel(&((t_instruction *)asm_h->list_instruction->content)->name);
-			params = ((t_instruction *)asm_h->list_instruction->content)->params;
+			ft_strdel(&((t_instruction *)asm_h->\
+						list_instruction->content)->name);
+			params = ((t_instruction *)asm_h->\
+					list_instruction->content)->params;
 			while (params)
 			{
 				ft_strdel(&params->content);
@@ -51,6 +45,21 @@ void			free_asm(t_asm *asm_h)
 		ft_memdel((void **)&(asm_h->list_instruction));
 		asm_h->list_instruction = next;
 	}
+}
+
+void			free_asm(t_asm *asm_h)
+{
+	t_list		*next;
+
+	while (asm_h->label_list)
+	{
+		ft_strdel(&((t_label *)asm_h->label_list->content)->name);
+		ft_memdel(&(asm_h->label_list->content));
+		next = asm_h->label_list->next;
+		ft_memdel((void **)&(asm_h->label_list));
+		asm_h->label_list = next;
+	}
+	free_asm_p2(asm_h);
 	ft_strdel(&asm_h->output_name);
 }
 
@@ -72,6 +81,6 @@ int				main(int argc, char **argv)
 		return (asm_error(&asm_h, err_check));
 	ft_putstr("Writing output program to ");
 	ft_putendl(asm_h.output_name);
-	free_asm(&asm_h); //TODO
+	free_asm(&asm_h);
 	return (0);
 }
